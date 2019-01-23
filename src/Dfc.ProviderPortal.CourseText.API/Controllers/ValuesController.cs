@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Dfc.ProviderPortal.CourseText.Web.Controllers
+namespace Dfc.ProviderPortal.CourseText.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

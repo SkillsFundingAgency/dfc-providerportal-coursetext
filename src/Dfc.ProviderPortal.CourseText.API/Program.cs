@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace Dfc.ProviderPortal.CourseText.Web
+namespace Dfc.ProviderPortal.CourseText.API
 {
     public class Program
     {
