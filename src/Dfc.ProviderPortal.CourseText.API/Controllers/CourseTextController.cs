@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Dfc.ProviderPortal.CourseText.Functions;
 using Dfc.ProviderPortal.CourseText.Interfaces;
 using Dfc.ProviderPortal.Packages;
 
@@ -26,18 +25,12 @@ namespace Dfc.ProviderPortal.CourseText.API.Controllers
         }
 
         [HttpGet("PopulateSearch", Name = "PopulateSearch")]
-        public ActionResult<IEnumerable<IAzureSearchCourseText>> PopulateSearch()
+        public ActionResult<IEnumerable<ICourseText>> PopulateSearch()
         {
-            try
-            {
-                Task<IEnumerable<IAzureSearchCourseText>> task = _service.FindCourseTextAzureSearchData(_log);
-                task.Wait();
-                return new ActionResult<IEnumerable<IAzureSearchCourseText>>(task.Result);
-            }
-            catch(Exception ex)
-            {
-                return new InternalServerErrorObjectResult(ex);
-            }
+
+            Task<IEnumerable<ICourseText>> task = _service.GetAllCourseText(_log);
+            task.Wait();
+            return new ActionResult<IEnumerable<ICourseText>>(task.Result);
         }
     }
 }

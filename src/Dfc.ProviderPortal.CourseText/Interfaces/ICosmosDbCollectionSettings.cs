@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Dfc.ProviderPortal.CourseText.Interfaces
 {
-    public interface ICourseTextService
+    public interface ICosmosDbCollectionSettings
     {
-        Task<IEnumerable<ICourseText>> GetAllCourseText(ILogger log);
+        string CourseTextCollectionId { get; }
     }
 }
