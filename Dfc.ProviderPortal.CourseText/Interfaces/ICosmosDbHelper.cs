@@ -18,6 +18,6 @@ namespace Dfc.ProviderPortal.CourseText.Interfaces
         IEnumerable<T> DocumentsTo<T>(IEnumerable<Document> documents);
         Document GetDocumentById<T>(DocumentClient client, string collectionId, T id);
         Task<Document> UpdateDocumentAsync(DocumentClient client, string collectionId, object document);
-        List<CourseTextModel> GetDocumentsByUKPRN(DocumentClient client, string collectionId, int UKPRN);
+        //List<CourseTextModel> GetDocumentsByUKPRN(DocumentClient client, string collectionId, int UKPRN);
     }
 }

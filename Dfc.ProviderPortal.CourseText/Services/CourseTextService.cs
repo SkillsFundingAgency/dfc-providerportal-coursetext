@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Dfc.ProviderPortal.CourseText.Services
 {
-    public class CourseTextService
+    public class CourseTextService : ICourseTextService
     {
         private readonly ICosmosDbHelper _cosmosDbHelper;
         private readonly ICosmosDbCollectionSettings _settings;
