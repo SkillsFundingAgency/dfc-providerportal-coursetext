@@ -1,4 +1,5 @@
 using Dfc.ProviderPortal.CourseText.Interfaces;
+using Dfc.ProviderPortal.CourseText.Models;
 using Dfc.ProviderPortal.Packages.AzureFunctions.DependencyInjection;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -19,7 +20,7 @@ namespace Dfc.ProviderPortal.CourseText.Functions
                                                     [Inject] ICourseTextService courseTextService
             )
         {
-            IEnumerable<ICourseText> results = null;
+            IEnumerable<CourseTextModel> results = null;
 
             try
             {

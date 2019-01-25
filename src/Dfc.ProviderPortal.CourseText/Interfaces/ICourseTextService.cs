@@ -1,4 +1,5 @@
 ﻿
+using Dfc.ProviderPortal.CourseText.Models;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,6 @@ namespace Dfc.ProviderPortal.CourseText.Interfaces
 {
     public interface ICourseTextService
     {
-        Task<IEnumerable<ICourseText>> GetAllCourseText(ILogger log);
+        Task<IEnumerable<CourseTextModel>> GetAllCourseText(ILogger log);
     }
 }

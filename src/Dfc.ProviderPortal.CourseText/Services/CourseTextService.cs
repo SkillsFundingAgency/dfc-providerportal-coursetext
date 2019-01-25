@@ -28,7 +28,7 @@ namespace Dfc.ProviderPortal.CourseText.Services
             _cosmosDbHelper = cosmosDbHelper;
             _settings = settings.Value;
         }
-        public async Task<IEnumerable<ICourseText>> GetAllCourseText(ILogger log)
+        public async Task<IEnumerable<CourseTextModel>> GetAllCourseText(ILogger log)
         {
             try
             {
