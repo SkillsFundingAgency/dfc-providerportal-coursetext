@@ -1,15 +1,13 @@
-using System;
-using System.IO;
-using System.Threading.Tasks;
+using Dfc.ProviderPortal.CourseText.Interfaces;
+using Dfc.ProviderPortal.Packages.AzureFunctions.DependencyInjection;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
-using Dfc.ProviderPortal.CourseText.Interfaces;
-using Dfc.ProviderPortal.Packages.AzureFunctions.DependencyInjection;
+using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Dfc.ProviderPortal.CourseText.Functions
 {
@@ -18,7 +16,8 @@ namespace Dfc.ProviderPortal.CourseText.Functions
         [FunctionName("GetAllCourseText")]
         public static async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req,
                                                     ILogger log,
-                                                    [Inject] ICourseTextService courseTextService)
+                                                    [Inject] ICourseTextService courseTextService
+            )
         {
             IEnumerable<ICourseText> results = null;
 
