@@ -20,7 +20,7 @@ namespace Dfc.ProviderPortal.CourseText.Functions
                                                     [Inject] ICourseTextService courseTextService
             )
         {
-            IEnumerable<CourseTextModel> results = null;
+            IEnumerable<ICourseText> results = null;
 
             try
             {

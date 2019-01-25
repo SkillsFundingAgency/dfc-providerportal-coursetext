@@ -28,7 +28,7 @@ namespace Dfc.ProviderPortal.CourseText.Services
             _cosmosDbHelper = cosmosDbHelper;
             _settings = settings.Value;
         }
-        public async Task<IEnumerable<CourseTextModel>> GetAllCourseText(ILogger log)
+        public async Task<IEnumerable<ICourseText>> GetAllCourseText(ILogger log)
         {
             try
             {
@@ -55,7 +55,6 @@ namespace Dfc.ProviderPortal.CourseText.Services
                 log.LogInformation($"Serializing data for {docs.LongCount()} courses");
                 string json = JsonConvert.SerializeObject(docs);
                 return JsonConvert.DeserializeObject<IEnumerable<CourseTextModel>>(json);
-
             }
             catch (Exception ex)
             {
