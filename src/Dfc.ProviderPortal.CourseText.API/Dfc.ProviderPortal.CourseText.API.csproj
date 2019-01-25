@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Dfc.ProviderPortal.CourseText\Dfc.ProviderPortal.CourseText.csproj" />
+    <ProjectReference Include="..\..\src\Dfc.ProviderPortal.CourseText\Dfc.ProviderPortal.CourseText.csproj" />
   </ItemGroup>
 
 </Project>

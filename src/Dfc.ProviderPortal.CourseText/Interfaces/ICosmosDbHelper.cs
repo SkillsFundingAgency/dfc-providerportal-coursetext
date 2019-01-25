@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Dfc.ProviderPortal.CourseText.Models;
 using Microsoft.Azure.Documents;
 using Microsoft.Azure.Documents.Client;
-using Dfc.ProviderPortal.CourseText.Models;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+
 namespace Dfc.ProviderPortal.CourseText.Interfaces
 {
     public interface ICosmosDbHelper
@@ -18,6 +18,6 @@ namespace Dfc.ProviderPortal.CourseText.Interfaces
         IEnumerable<T> DocumentsTo<T>(IEnumerable<Document> documents);
         Document GetDocumentById<T>(DocumentClient client, string collectionId, T id);
         Task<Document> UpdateDocumentAsync(DocumentClient client, string collectionId, object document);
-        List<CourseTextModel> GetDocumentsByUKPRN(DocumentClient client, string collectionId, int UKPRN);
+        //List<CourseTextModel> GetDocumentsByUKPRN(DocumentClient client, string collectionId, int UKPRN);
     }
 }
