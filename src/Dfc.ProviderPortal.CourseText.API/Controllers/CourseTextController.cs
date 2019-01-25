@@ -23,14 +23,5 @@ namespace Dfc.ProviderPortal.CourseText.API.Controllers
             _log = logger;
             _service = service;
         }
-
-        [HttpGet("PopulateSearch", Name = "PopulateSearch")]
-        public ActionResult<IEnumerable<ICourseText>> PopulateSearch()
-        {
-
-            Task<IEnumerable<ICourseText>> task = _service.GetAllCourseText(_log);
-            task.Wait();
-            return new ActionResult<IEnumerable<ICourseText>>(task.Result);
-        }
     }
 }

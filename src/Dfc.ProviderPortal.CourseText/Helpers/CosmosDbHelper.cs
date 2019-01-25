@@ -116,44 +116,20 @@ namespace Dfc.ProviderPortal.CourseText.Helpers
             return await client.UpsertDocumentAsync(uri, document);
         }
 
-        //public List<CourseTextModel> GetDocumentsByUKPRN(DocumentClient client, string collectionId, int UKPRN)
-        //{
-        //    Throw.IfNull(client, nameof(client));
-        //    Throw.IfNullOrWhiteSpace(collectionId, nameof(collectionId));
-        //    Throw.IfNull(UKPRN, nameof(UKPRN));
+        public List<CourseTextModel> GetCourseTextByLARS(DocumentClient client, string collectionId, int LARSRef)
+        {
+            Throw.IfNull(client, nameof(client));
+            Throw.IfNullOrWhiteSpace(collectionId, nameof(collectionId));
+            Throw.IfNull(LARSRef, nameof(LARSRef));
 
-        //    Uri uri = UriFactory.CreateDocumentCollectionUri(_settings.DatabaseId, collectionId);
-        //    FeedOptions options = new FeedOptions { EnableCrossPartitionQuery = true, MaxItemCount = -1 };
+            Uri uri = UriFactory.CreateDocumentCollectionUri(_settings.DatabaseId, collectionId);
+            FeedOptions options = new FeedOptions { EnableCrossPartitionQuery = true, MaxItemCount = -1 };
 
-        //    List<CourseTextModel> docs = client.CreateDocumentQuery<CourseTextModel>(uri, options)
-        //                                     .Where(x => x.LearnAimRef == UKPRN)
-        //                                     .ToList(); // .AsEnumerable();
+            List<CourseTextModel> docs = client.CreateDocumentQuery<CourseTextModel>(uri, options)
+                                             .Where(x => x.LearnAimRef == LARSRef)
+                                             .ToList(); // .AsEnumerable();
 
-        //    return docs;
-        //}
-
-        //public List<Course> GetDocumentsByFACSearchCriteria(DocumentClient client, string collectionId, IFACSearchCriteria criteria)
-        //{
-        //    Throw.IfNull(client, nameof(client));
-        //    Throw.IfNullOrWhiteSpace(collectionId, nameof(collectionId));
-        //    Throw.IfNull(criteria, nameof(criteria));
-
-        //    Uri uri = UriFactory.CreateDocumentCollectionUri(_settings.DatabaseId, collectionId);
-        //    FeedOptions options = new FeedOptions { EnableCrossPartitionQuery = true, MaxItemCount = -1 };
-
-        //    IQueryable<Course> qry = client.CreateDocumentQuery<Course>(uri, options)
-        //                                   .Where(x => x.QualificationCourseTitle == criteria.Keyword);
-
-        //    if (!string.IsNullOrWhiteSpace(criteria.QualificationLevel))
-        //        qry = qry.Where(x => x.NotionalNVQLevelv2 == criteria.QualificationLevel);
-
-        //    //if (!string.IsNullOrWhiteSpace(criteria.LocationPostcode) && criteria.DistanceInMiles > 0)
-        //    //    qry = qry.Where(x => x.CalculateDistance() < criteria.DistanceInMiles);
-
-        //    List<Models.Course> docs = qry.ToList(); // .AsEnumerable();
-
-        //    return docs;
-        //}
-    
+            return docs;
+        }
     }
 }
