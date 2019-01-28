@@ -1,4 +1,5 @@
 ﻿using Dfc.ProviderPortal.CourseText.Interfaces;
+using Newtonsoft.Json;
 using System;
 
 namespace Dfc.ProviderPortal.CourseText.Models
@@ -7,7 +8,7 @@ namespace Dfc.ProviderPortal.CourseText.Models
     {
         public Guid id { get; set; }
         public string QualificationCourseTitle { get; set; }
-        public int LearnAimRef { get; set; }
+        public string LearnAimRef { get; set; }
         public string NotionalNVQLevelv2 { get; set; }
         public string TypeName { get; set; }
         public string AwardOrgCode { get; set; }

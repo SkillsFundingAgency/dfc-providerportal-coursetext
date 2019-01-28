@@ -26,14 +26,11 @@ namespace Dfc.ProviderPortal.CourseText.Functions
 
             if (string.IsNullOrWhiteSpace(fromQuery))
                 return new BadRequestObjectResult($"Empty or missing LARS Reference.");
-
-            if (!int.TryParse(fromQuery, out int LARSRef))
-                return new BadRequestObjectResult($"Invalid UKPRN value, expected a valid integer");
             try
             {
-                persisted = (List<CourseTextModel>)await courseTextService.GetCourseTextByLARS(LARSRef);
+                persisted = (List<CourseTextModel>)await courseTextService.GetCourseTextByLARS(fromQuery);
                 if (persisted == null)
-                    return new NotFoundObjectResult(LARSRef);
+                    return new NotFoundObjectResult(fromQuery);
 
                 return new OkObjectResult(persisted);
 

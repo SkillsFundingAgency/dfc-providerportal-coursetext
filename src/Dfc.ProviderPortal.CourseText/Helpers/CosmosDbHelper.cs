@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Dfc.ProviderPortal.CourseText.Helpers
@@ -116,8 +117,8 @@ namespace Dfc.ProviderPortal.CourseText.Helpers
             return await client.UpsertDocumentAsync(uri, document);
         }
 
-        public List<CourseTextModel> GetCourseTextByLARS(DocumentClient client, string collectionId, int LARSRef)
-        {
+        public List<CourseTextModel> GetCourseTextByLARS(DocumentClient client, string collectionId, string LARSRef)
+        {                       
             Throw.IfNull(client, nameof(client));
             Throw.IfNullOrWhiteSpace(collectionId, nameof(collectionId));
             Throw.IfNull(LARSRef, nameof(LARSRef));
@@ -126,8 +127,8 @@ namespace Dfc.ProviderPortal.CourseText.Helpers
             FeedOptions options = new FeedOptions { EnableCrossPartitionQuery = true, MaxItemCount = -1 };
 
             List<CourseTextModel> docs = client.CreateDocumentQuery<CourseTextModel>(uri, options)
-                                             .Where(x => x.LearnAimRef == LARSRef)
-                                             .ToList(); // .AsEnumerable();
+                 .Where(x => x.LearnAimRef == LARSRef)
+                 .ToList();
 
             return docs;
         }
