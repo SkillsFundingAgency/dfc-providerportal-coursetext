@@ -28,11 +28,11 @@ namespace Dfc.ProviderPortal.CourseText.Services
             _cosmosDbHelper = cosmosDbHelper;
             _settings = settings.Value;
         }
-        public async Task<IEnumerable<ICourseText>> GetCourseTextByLARS(string LARSRef)
+        public async Task<ICourseText> GetCourseTextByLARS(string LARSRef)
         {
             Throw.IfNull(LARSRef, nameof(LARSRef));
 
-            IEnumerable<CourseTextModel> persisted = null;
+            CourseTextModel persisted = null;
             using (var client = _cosmosDbHelper.GetClient())
             {
                 var docs = _cosmosDbHelper.GetCourseTextByLARS(client, _settings.CourseTextCollectionId, LARSRef);
