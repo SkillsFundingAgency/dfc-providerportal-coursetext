@@ -22,13 +22,13 @@ namespace Dfc.ProviderPortal.CourseText.Functions
                                                     [Inject] ICourseTextService courseTextService)
         {
             string fromQuery = req.Query["LARS"];
-            List<CourseTextModel> persisted = null;
+            CourseTextModel persisted = null;
 
             if (string.IsNullOrWhiteSpace(fromQuery))
                 return new BadRequestObjectResult($"Empty or missing LARS Reference.");
             try
             {
-                persisted = (List<CourseTextModel>)await courseTextService.GetCourseTextByLARS(fromQuery);
+                persisted = (CourseTextModel)await courseTextService.GetCourseTextByLARS(fromQuery);
                 if (persisted == null)
                     return new NotFoundObjectResult(fromQuery);
 

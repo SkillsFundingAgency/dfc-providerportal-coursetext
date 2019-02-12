@@ -11,6 +11,6 @@ namespace Dfc.ProviderPortal.CourseText.Interfaces
     public interface ICourseTextService
     {
         Task<IEnumerable<ICourseText>> GetAllCourseText(ILogger log);
-        Task<IEnumerable<ICourseText>> GetCourseTextByLARS(string LARSRef);
+        Task<ICourseText> GetCourseTextByLARS(string LARSRef);
     }
 }

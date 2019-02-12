@@ -117,7 +117,7 @@ namespace Dfc.ProviderPortal.CourseText.Helpers
             return await client.UpsertDocumentAsync(uri, document);
         }
 
-        public List<CourseTextModel> GetCourseTextByLARS(DocumentClient client, string collectionId, string LARSRef)
+        public CourseTextModel GetCourseTextByLARS(DocumentClient client, string collectionId, string LARSRef)
         {                       
             Throw.IfNull(client, nameof(client));
             Throw.IfNullOrWhiteSpace(collectionId, nameof(collectionId));
@@ -126,9 +126,9 @@ namespace Dfc.ProviderPortal.CourseText.Helpers
             Uri uri = UriFactory.CreateDocumentCollectionUri(_settings.DatabaseId, collectionId);
             FeedOptions options = new FeedOptions { EnableCrossPartitionQuery = true, MaxItemCount = -1 };
 
-            List<CourseTextModel> docs = client.CreateDocumentQuery<CourseTextModel>(uri, options)
-                 .Where(x => x.LearnAimRef == LARSRef)
-                 .ToList();
+            CourseTextModel docs = client.CreateDocumentQuery<CourseTextModel>(uri, options)
+                .Where(x => x.LearnAimRef == LARSRef).AsEnumerable()
+                .FirstOrDefault();
 
             return docs;
         }
