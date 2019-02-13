@@ -129,7 +129,7 @@
                 "value": "[parameters('cosmosDBdatabase')]"
               },
               {
-                "name": "CosmosDbCollectionSettings__CoursesCollectionId",
+                "name": "CosmosDbCollectionSettings__CourseTextCollectionId",
                 "value": "[parameters('cosmosDBcollection')]"
               }
             ]
