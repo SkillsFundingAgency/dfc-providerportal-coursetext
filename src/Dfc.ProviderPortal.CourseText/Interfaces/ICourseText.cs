@@ -12,7 +12,7 @@ namespace Dfc.ProviderPortal.CourseText.Interfaces
         string AwardOrgCode { get; }
         string CountOfOpportunities { get; }
         string CourseDescription { get; }
-        string EntryRequirments { get; }
+        string EntryRequirements { get; }
         string WhatYoullLearn { get; }
         string HowYoullLearn { get; }
         string WhatYoullNeed { get; }
