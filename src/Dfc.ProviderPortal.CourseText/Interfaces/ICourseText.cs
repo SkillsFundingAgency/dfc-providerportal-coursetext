@@ -6,7 +6,7 @@ namespace Dfc.ProviderPortal.CourseText.Interfaces
     {
         Guid id { get; }
         string QualificationCourseTitle { get; }
-        string LearnAimRef { get; }
+        object LearnAimRef { get; }
         string NotionalNVQLevelv2 { get; }
         string TypeName { get; }
         string AwardOrgCode { get; }
