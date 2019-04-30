@@ -126,9 +126,24 @@ namespace Dfc.ProviderPortal.CourseText.Helpers
             Uri uri = UriFactory.CreateDocumentCollectionUri(_settings.DatabaseId, collectionId);
             FeedOptions options = new FeedOptions { EnableCrossPartitionQuery = true, MaxItemCount = -1 };
 
-            CourseTextModel docs = client.CreateDocumentQuery<CourseTextModel>(uri, options)
-                .Where(x => x.LearnAimRef == LARSRef).AsEnumerable()
+            //Determine data type
+            CourseTextModel docs;
+            if (Regex.IsMatch(LARSRef, @"[a-zA-Z]"))
+            {
+                //Lars is string
+                docs = client.CreateDocumentQuery<CourseTextModel>(uri, options)
+                .Where(x => (string)x.LearnAimRef == LARSRef).AsEnumerable()
                 .FirstOrDefault();
+            }
+            else
+            {
+                //Lars is int
+                docs = client.CreateDocumentQuery<CourseTextModel>(uri, options)
+                .Where(x => (int)x.LearnAimRef == Int32.Parse(LARSRef)).AsEnumerable()
+                .FirstOrDefault();
+            }
+
+
 
             return docs;
         }
