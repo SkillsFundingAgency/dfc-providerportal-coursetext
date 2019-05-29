@@ -12,7 +12,7 @@ namespace Dfc.ProviderPortal.CourseText.Controllers
     public class DocController : ControllerBase
     {
         [Route("GetAllCourseText")]
-        [HttpPost]
+        [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<CourseTextModel>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -23,7 +23,7 @@ namespace Dfc.ProviderPortal.CourseText.Controllers
         }
 
         [Route("GetCourseTextByLARS")]
-        [HttpPost]
+        [HttpGet]
         [ProducesResponseType(typeof(CourseTextModel), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
