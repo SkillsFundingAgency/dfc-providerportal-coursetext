@@ -10,12 +10,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
-
 [assembly: WebJobsStartup(typeof(WebJobsExtensionStartup), "Web Jobs Extension Startup")]
+
 namespace Dfc.ProviderPortal.CourseText
 {
-
-
     public class WebJobsExtensionStartup : IWebJobsStartup
     {
         public void Configure(IWebJobsBuilder builder)
