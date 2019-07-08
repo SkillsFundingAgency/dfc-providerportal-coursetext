@@ -17,7 +17,7 @@ namespace Dfc.ProviderPortal.CourseText.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult GetAllCourseText([Required]string code)
+        public IActionResult GetAllCourseText()
         {
             return Ok();
         }
@@ -28,7 +28,7 @@ namespace Dfc.ProviderPortal.CourseText.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult GetCourseTextByLARS(string LARS, [Required]string code)
+        public IActionResult GetCourseTextByLARS(string LARS)
         {
             return Ok();
         }
