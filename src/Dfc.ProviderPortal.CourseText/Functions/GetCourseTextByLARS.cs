@@ -17,7 +17,7 @@ namespace Dfc.ProviderPortal.CourseText.Functions
     public static class GetCourseTextByLARS
     {
         [FunctionName("GetCourseTextByLARS")]
-        public static async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req,
+        public static async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
                                                     ILogger log,
                                                     [Inject] ICourseTextService courseTextService)
         {
