@@ -177,60 +177,6 @@
       }
     },
     {
-      "name": "ppcoursetextApimProduct",
-      "type": "Microsoft.Resources/deployments",
-      "apiVersion": "2017-05-10",
-      "resourceGroup": "[parameters('apimResourceGroup')]",
-      "properties": {
-        "mode": "Incremental",
-        "templateLink": {
-          "uri": "[concat(variables('deploymentUrlBase'), 'APIM/apim-product.json')]",
-          "contentVersion": "1.0.0.0"
-        },
-        "parameters": {
-          "allowAnonymousAccess": {
-            "value": false
-          },
-          "apimServiceName": {
-            "value": "[parameters('apimServiceName')]"
-          },
-          "productDisplayName": {
-            "value": "[parameters('apiProductDisplayName')]"
-          }
-        }
-      }
-    },
-    {
-      "name": "ppcoursetextApimApi",
-      "type": "Microsoft.Resources/deployments",
-      "apiVersion": "2017-05-10",
-      "resourceGroup": "[parameters('apimResourceGroup')]",
-      "dependsOn": [
-        "ppcoursetextApimProduct"
-      ],
-      "properties": {
-        "mode": "Incremental",
-        "templateLink": {
-          "uri": "[concat(variables('deploymentUrlBase'), 'APIM/apim-api.json')]",
-          "contentVersion": "1.0.0.0"
-        },
-        "parameters": {
-          "apimProductInstanceName": {
-            "value": "[reference('ppcoursetextApimProduct').outputs.ApimProductInstanceName.value]"
-          },
-          "apimServiceName": {
-            "value": "[parameters('apimServiceName')]"
-          },
-          "apiName": {
-            "value": "[parameters('apiName')]"
-          },
-          "apiSuffix": {
-            "value": "[parameters('apiSuffix')]"
-          }
-        }
-      }
-    },
-    {
       "apiVersion": "2017-05-10",
       "name": "cosmosCollectionCourseText",
       "type": "Microsoft.Resources/deployments",
