@@ -14,12 +14,17 @@ using Dfc.ProviderPortal.CourseText.Interfaces;
 
 namespace Dfc.ProviderPortal.CourseText.Functions
 {
-    public static class GetCourseTextByLARS
+    public class GetCourseTextByLARS
     {
+        private readonly ICourseTextService _courseTextService;
+
+        public GetCourseTextByLARS(ICourseTextService courseTextService)
+        {
+            _courseTextService = courseTextService;
+        }
+
         [FunctionName("GetCourseTextByLARS")]
-        public static async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
-                                                    ILogger log,
-                                                    [Inject] ICourseTextService courseTextService)
+        public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req)
         {
             string fromQuery = req.Query["LARS"];
             CourseTextModel persisted = null;
@@ -28,7 +33,7 @@ namespace Dfc.ProviderPortal.CourseText.Functions
                 return new BadRequestObjectResult($"Empty or missing LARS Reference.");
             try
             {
-                persisted = (CourseTextModel)await courseTextService.GetCourseTextByLARS(fromQuery);
+                persisted = (CourseTextModel)await _courseTextService.GetCourseTextByLARS(fromQuery);
                 if (persisted == null)
                     return new NotFoundObjectResult(fromQuery);
 
