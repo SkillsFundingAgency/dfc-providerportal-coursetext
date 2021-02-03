@@ -12,19 +12,25 @@ using System.Threading.Tasks;
 
 namespace Dfc.ProviderPortal.CourseText.Functions
 {
-    public static class GetAllCourseText
+    public class GetAllCourseText
     {
+        private readonly ICourseTextService _courseTextService;
+        private readonly ILogger _logger;
+
+        public GetAllCourseText(ICourseTextService courseTextService, ILogger logger)
+        {
+            _courseTextService = courseTextService;
+            _logger = logger;
+        }
+
         [FunctionName("GetAllCourseText")]
-        public static async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
-                                                    ILogger log,
-                                                    [Inject] ICourseTextService courseTextService
-            )
+        public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req)
         {
             IEnumerable<ICourseText> results = null;
 
             try
             {
-                results = await courseTextService.GetAllCourseText(log);
+                results = await _courseTextService.GetAllCourseText(_logger);
                 return new OkObjectResult(results);
 
             }

@@ -1,47 +1,26 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
+﻿using Dfc.ProviderPortal.CourseText;
+using Dfc.ProviderPortal.CourseText.Helpers;
+using Dfc.ProviderPortal.CourseText.Interfaces;
+using Dfc.ProviderPortal.CourseText.Services;
+using Dfc.ProviderPortal.CourseText.Settings;
+using DFC.Swagger.Standard;
+using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.OpenApi.Models;
-using Newtonsoft.Json.Serialization;
+[assembly: FunctionsStartup(typeof(Startup))]
 
 namespace Dfc.ProviderPortal.CourseText
 {
-    public class Startup
+    public class Startup : FunctionsStartup
     {
-        public Startup(IConfiguration configuration)
+        public override void Configure(IFunctionsHostBuilder builder)
         {
-            Configuration = configuration;
-        }
+            var configuration = builder.GetContext().Configuration;
 
-        public IConfiguration Configuration { get; }
-
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services
-                .AddMvcCore()
-                .SetCompatibilityVersion(CompatibilityVersion.Latest)
-                .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver())
-                .AddApiExplorer();
-
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Course Directory Course Text API", Version = "v1" });
-            });
-        }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
-            app.UseSwagger();
-
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Course Directory Course Text API");
-            });
-
-            app.UseMvc();
+            builder.Services.Configure<CosmosDbSettings>(configuration.GetSection(nameof(CosmosDbSettings)));
+            builder.Services.Configure<CosmosDbCollectionSettings>(configuration.GetSection(nameof(CosmosDbCollectionSettings)));
+            builder.Services.AddScoped<ICosmosDbHelper, CosmosDbHelper>();
+            builder.Services.AddScoped<ICourseTextService, CourseTextService>();
+            builder.Services.AddScoped<ISwaggerDocumentGenerator, SwaggerDocumentGenerator>();
         }
     }
 }
