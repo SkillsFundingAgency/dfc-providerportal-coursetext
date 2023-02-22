@@ -18,7 +18,7 @@ namespace Dfc.ProviderPortal.CourseText
 
         public IConfiguration Configuration { get; }
 
-        public void ConfigureServices1(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
             services
                 .AddControllers()
