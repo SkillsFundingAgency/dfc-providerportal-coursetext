@@ -31,36 +31,6 @@
       "metadata": {
         "description": "Connection string for the storage account to store function app files"
       }
-    },
-    "cosmosDBfqdn": {
-      "type": "string",
-      "metadata": {
-        "description": "Cosmos DB account name in the format https://dfc-xxx-xxx-cdb.documents.azure.com/ for app settings"
-      }
-    },
-    "cosmosDBkey": {
-      "type": "securestring",
-      "metadata": {
-        "description": "Cosmos DB access key for app settings"
-      }
-    },
-    "cosmosDbAccount": {
-      "type": "string",
-      "metadata": {
-        "description": "Cosmos DB database name for creating collections"
-      }
-    },
-    "cosmosDBdatabase": {
-      "type": "string",
-      "metadata": {
-        "description": "Cosmos DB database name for app settings"
-      }
-    },
-    "cosmosDBcollection": {
-      "type": "string",
-      "metadata": {
-        "description": "Cosmos DB collection name for app settings"
-      }
     }
   },
   "variables": {
@@ -135,54 +105,11 @@
               {
                 "name": "FUNCTIONS_WORKER_RUNTIME",
                 "value": "dotnet"
-              },
-              {
-                "name": "CosmosDbSettings__EndpointUri",
-                "value": "[parameters('cosmosDBfqdn')]"
-              },
-              {
-                "name": "CosmosDbSettings__PrimaryKey",
-                "value": "[parameters('cosmosDBkey')]"
-              },
-              {
-                "name": "CosmosDbSettings__DatabaseId",
-                "value": "[parameters('cosmosDBdatabase')]"
-              },
-              {
-                "name": "CosmosDbCollectionSettings__CourseTextCollectionId",
-                "value": "[parameters('cosmosDBcollection')]"
               }
             ]
           },
           "deployStagingSlot": {
             "value": true
-          }
-        }
-      }
-    },
-    {
-      "apiVersion": "2017-05-10",
-      "name": "cosmosCollectionCourseText",
-      "type": "Microsoft.Resources/deployments",
-      "resourceGroup": "[parameters('appServicePlanResourceGroup')]",
-      "properties": {
-        "mode": "Incremental",
-        "templateLink": {
-            "uri": "[concat(variables('deploymentUrlBase'),'CosmosDb/cosmos-collection.json')]",
-            "contentVersion": "1.0.0.0"
-        },
-        "parameters": {
-          "accountName": {
-              "value": "[parameters('cosmosDbAccount')]"
-          },
-          "databaseName": {
-              "value": "[parameters('cosmosDBdatabase')]"
-          },
-          "collectionName": {
-              "value": "coursetext"
-          },
-          "offerThroughput": {
-              "value": 400
           }
         }
       }
